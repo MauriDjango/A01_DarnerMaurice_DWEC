@@ -37,9 +37,9 @@ function numberInput(msg) {
 }
 
 function ageInput(msg) {
-  let numStr = prompt(msg)
-  return validateAge(numStr) && numStr > 0 ?
-    Number(numStr) :
+  let ageStr = prompt(msg)
+  return validateNumber(ageStr) && 0 < ageStr && ageStr <= 125 ?
+    Number(ageStr) :
     null
 }
 
@@ -50,10 +50,6 @@ function wordInput(msg) {
 
 function validateNumber(str) {
   return str === `${Number(str)}`
-}
-
-function validateAge(str) {
-  return str === `${Number(str)}` && str >= 0
 }
 
 function validateLetters(str) {
@@ -122,12 +118,11 @@ function exercise6() {
 
   do {
     num = numberInput(numMsg)
-    console.log(num)
 
     if (num !== null) {
       num !== 0 ? num > 0 ?
-          alert("The number is positive") :
-          alert("The number is negative") :
+        alert("The number is positive") :
+        alert("The number is negative") :
         alert("The number is zero")
     } else {
       alert("This is not a valid number")
@@ -218,6 +213,8 @@ function exercise13() {
     num = numberInput(msg)
     if (num === null) {
       alert("Please enter a valid number")
+    } else {
+      alert("That was a valid number")
     }
   } while (num === null)
 }
@@ -230,7 +227,9 @@ function exercise14() {
     num = numberInput(msg)
 
     if (num !== null) {
-      if (num % 2 === 0) {
+      if (num === 0) {
+        alert("This number is zero")
+      } else if (num % 2 === 0) {
         alert("This number is even")
       } else {
         alert("This number is odd")
@@ -322,11 +321,16 @@ function exercise17() {
     do {
       age = ageInput(msg)
 
-      if (age && age >= 18) {
-        count += 1
+      if (age) {
+        if (age >= 18) {
+          count += 1
+        }
+      } else {
+        alert("Please enter a valid age")
       }
     } while (!age)
   }
+  console.log(count)
 }
 
 function exercise18() {
@@ -338,7 +342,7 @@ function exercise18() {
     num = numberInput(msg)
     if (num !== null && num > 9) {
       for (let number in num.toString()) {
-        total += number
+        total += Number(number)
       }
     } else {
       alert("Please enter a valid number")
@@ -358,11 +362,15 @@ function exercise19() {
     total = num
 
     if (num !== null) {
-      for (num; num > 0; num--) {
-        total *= num
+      for (let i = num - 1; i > 0; i--) {
+        total *= i
       }
+    } else {
+      alert("Please enter a valid number")
     }
   } while (num === null)
+
+  console.log(total)
 }
 
 function exercise20() {
