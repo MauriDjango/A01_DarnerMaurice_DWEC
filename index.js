@@ -45,7 +45,7 @@ function ageInput(msg) {
 
 function wordInput(msg) {
   let wordStr = prompt(msg)
-  return validateLetters(wordStr) ? wordStr : null
+  return validateLetters(wordStr) && wordStr !== "" ? wordStr : null
 }
 
 function validateNumber(str) {
@@ -187,7 +187,7 @@ function exercise10(){
 
 function exercise11() {
   let num = 1
-  const numMsg = "Please enter a number"
+  const numMsg = "Please enter a negative number to escape the loop"
 
   while (num >= 0) {
     num = numberInput(numMsg)
